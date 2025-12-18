@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>Animated App</title>
+<style>
+body { font-family: Arial; text-align: center; margin-top: 50px; background: #282c34; color: white;}
+button { padding: 10px 20px; font-size: 16px; cursor: pointer; border-radius: 8px; border: none; background: #61dafb; transition: all 0.3s;}
+button:hover { transform: scale(1.2); background: #21a1f1;}
+#response { margin-top: 20px; font-size: 18px; animation: fadein 1s;}
+@keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+</style>
+</head>
+<body>
+<h1>Welcome to the Animated App</h1>
+<button id='btn'>Click Me!</button>
+<p id='response'></p>
+<script>
+document.getElementById('btn').addEventListener('click', async () => {
+    const res = await fetch('/api/hello');
+    const data = await res.json();
+    const responseEl = document.getElementById('response');
+    responseEl.innerText = data.message;
+    responseEl.style.color = '#61dafb';
+});
+</script>
+</body>
+</html>
